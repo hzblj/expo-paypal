@@ -1,0 +1,89 @@
+{
+  "name": "@hzblj/expo-paypal",
+  "version": "0.0.0",
+  "description": "PayPal for Expo on the native PayPal SDK 3: PayPal Checkout with App Switch, Pay Later and PayPal Credit, vaulting, card payments with 3D Secure, the branded payment buttons and device data, behind one promise-based API.",
+  "author": "Jan Blazej",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hzblj/expo-paypal.git",
+    "directory": "packages/expo-paypal"
+  },
+  "bugs": {
+    "url": "https://github.com/hzblj/expo-paypal/issues"
+  },
+  "homepage": "https://github.com/hzblj/expo-paypal#readme",
+  "keywords": [
+    "3d-secure",
+    "android",
+    "app-switch",
+    "card-payments",
+    "checkout",
+    "config-plugin",
+    "expo",
+    "expo-module",
+    "ios",
+    "pay-later",
+    "payments",
+    "paypal",
+    "react-native",
+    "vault"
+  ],
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./build/index.d.ts",
+      "default": "./build/index.js"
+    },
+    "./plugin": {
+      "types": "./plugin/build/index.d.ts",
+      "default": "./plugin/build/index.js"
+    },
+    "./app.plugin.js": "./app.plugin.js",
+    "./expo-module.config.json": "./expo-module.config.json",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "android/build.gradle",
+    "android/src/main/**",
+    "app.plugin.js",
+    "build",
+    "expo-module.config.json",
+    "ios/*.podspec",
+    "ios/*.swift",
+    "ios/Core/**",
+    "plugin/build/**",
+    "src"
+  ],
+  "scripts": {
+    "build": "rm -rf build plugin/build && tsc -p ./tsconfig.build.json && tsc -p ./plugin/tsconfig.json",
+    "clean": "rm -rf build plugin/build",
+    "prepack": "yarn run -T turbo run build --filter=$npm_package_name...",
+    "lint": "yarn run -T concurrently \"yarn biome:check\" \"yarn tsc:check\"",
+    "lint:fix": "yarn run -T biome check --write .",
+    "biome:check": "yarn run -T biome check .",
+    "tsc:check": "yarn run -T concurrently \"tsc -p ./tsconfig.json\" \"tsc -p ./plugin/tsconfig.json --noEmit\"",
+    "test": "node --import tsx --test test/*.test.ts plugin/test/*.test.ts",
+    "test:ios": "swift test --package-path ios/Tests",
+    "test:android": "cd ../../apps/example/android && ./gradlew :hzblj-expo-paypal:testDebugUnitTest"
+  },
+  "peerDependencies": {
+    "expo": ">=57",
+    "react": "*",
+    "react-native": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.0",
+    "@types/react": "~19.2.14",
+    "expo": "~57.0.31",
+    "react": "19.2.3",
+    "react-native": "0.86.3",
+    "tsx": "^4.23.15",
+    "typescript": "~7.0.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

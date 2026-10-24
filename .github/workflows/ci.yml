@@ -1,0 +1,88 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Lint, typecheck, test, pack
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Biome
+        run: yarn biome:check
+
+      - name: Typecheck
+        run: yarn typecheck
+
+      # The JavaScript API over a fake native module, and the config plugin over manifests and plists.
+      - name: Test
+        run: yarn test
+
+      # Builds the package, packs it the way npm will receive it, loads its config plugin from the tarball and
+      # type-checks real usage from a throwaway consumer.
+      - name: Pack check
+        run: yarn pack:check
+
+  ios:
+    name: iOS module logic
+    runs-on: macos-15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # `ios/Core`, the module's Foundation-only logic, with SwiftPM on the Mac.
+      - name: Swift tests
+        run: swift test --package-path packages/expo-paypal/ios/Tests
+
+  android:
+    name: Android module
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      # The module compiles inside the example's Gradle project, the way an app builds it.
+      - name: Prebuild the example
+        run: yarn workspace @hzblj/expo-paypal build && yarn workspace expo-paypal-example expo prebuild --platform android --no-install
+
+      - name: Compile and run the JVM tests
+        working-directory: apps/example/android
+        run: ./gradlew :hzblj-expo-paypal:testDebugUnitTest --console=plain

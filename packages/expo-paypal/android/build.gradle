@@ -1,0 +1,38 @@
+import groovy.json.JsonSlurper
+
+plugins {
+  id 'com.android.library'
+  id 'expo-module-gradle-plugin'
+}
+
+def packageJson = new JsonSlurper().parseText(file('../package.json').text)
+
+group = 'com.hzblj.expopaypal'
+version = packageJson.version
+
+android {
+  namespace "com.hzblj.expopaypal"
+  defaultConfig {
+    versionCode 1
+    versionName packageJson.version
+  }
+  lintOptions {
+    abortOnError false
+  }
+  testOptions {
+    unitTests.returnDefaultValues = true
+  }
+}
+
+dependencies {
+  def paypalVersion = '3.1.0'
+
+  implementation "com.paypal.android:paypal-payments:${paypalVersion}"
+  implementation "com.paypal.android:card-payments:${paypalVersion}"
+  implementation "com.paypal.android:payment-buttons:${paypalVersion}"
+  implementation "com.paypal.android:fraud-protection:${paypalVersion}"
+
+  testImplementation 'junit:junit:4.13.2'
+  // The real org.json: android.jar's is a stub in JVM tests.
+  testImplementation 'org.json:json:20240303'
+}

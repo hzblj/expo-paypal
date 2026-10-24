@@ -1,6 +1,6 @@
 {
   "name": "@hzblj/expo-paypal",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "PayPal for Expo on the native PayPal SDK 3: PayPal Checkout with App Switch, Pay Later and PayPal Credit, vaulting, card payments with 3D Secure, the branded payment buttons and device data, behind one promise-based API.",
   "author": "Jan Blazej",
   "license": "MIT",

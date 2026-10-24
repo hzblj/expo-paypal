@@ -32,6 +32,9 @@ export default {
     // Registers PayPal's returns: the scheme below, as the example has no domain for an https returnUrl (App Switch
     // needs one, and a physical device). Built from packages/expo-paypal, which is why `yarn prebuild` builds it first.
     '@hzblj/expo-paypal',
+    // The scene life cycle, which apps built with the iOS 27 SDK need or they stop at launch: Expo 57's template has
+    // none, so React Native starts from Expo's scene delegate instead. Remove it with the move to Expo 58.
+    ['expo-build-properties', {ios: {enableSceneSupport: true}}],
   ],
   scheme: 'paypal-example',
   slug: 'expo-paypal-example',

@@ -1,5 +1,11 @@
 # @hzblj/expo-paypal
 
+## 0.1.2
+
+### Patch Changes
+
+- [`36d49b4`](https://github.com/hzblj/expo-paypal/commit/36d49b41d716e16751bddcc27b142e33ab081148) Thanks [@hzblj](https://github.com/hzblj)! - The LICENSE is the complete MIT license, with the limitation of liability it was missing.
+
 ## 0.1.1
 
 ### Patch Changes

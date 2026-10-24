@@ -51,6 +51,10 @@ yarn changeset       # describe a change for the next release
 
 The example needs a PayPal sandbox app: copy `apps/example/.env.example` to `apps/example/.env` and fill it in.
 
+## More libraries
+
+The other libraries from the same author are at **[libraries.janblazej.dev](https://www.libraries.janblazej.dev)**.
+
 ## License
 
 MIT © Jan Blazej

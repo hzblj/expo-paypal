@@ -197,6 +197,10 @@ It answers once, then `null`; a failure comes back as `restored.error`. Ask for 
 - The returns go to the SDK before any JavaScript runs, so a return that relaunched the app is never lost.
 - App Switch can't be tested on a simulator or an emulator: the PayPal app is needed. The in-app browser works everywhere, in the sandbox too.
 
+## More libraries
+
+The other libraries from the same author are at **[libraries.janblazej.dev](https://www.libraries.janblazej.dev)**.
+
 ## License
 
 MIT © Jan Blazej

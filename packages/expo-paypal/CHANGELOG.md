@@ -1,5 +1,11 @@
 # @hzblj/expo-paypal
 
+## 0.1.1
+
+### Patch Changes
+
+- [`1f79c41`](https://github.com/hzblj/expo-paypal/commit/1f79c4178ed77f8a1b729eb0816c8a28ada7fa76) Thanks [@hzblj](https://github.com/hzblj)! - The README links to the other libraries, at libraries.janblazej.dev.
+
 ## 0.1.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @hzblj/expo-paypal
 
+## 0.1.3
+
+### Patch Changes
+
+- [`96f085e`](https://github.com/hzblj/expo-paypal/commit/96f085ec0b43e8010b5dec3d89abcf2b4eac4248) Thanks [@hzblj](https://github.com/hzblj)! - The README shows the example app on iOS and Android.
+
 ## 0.1.2
 
 ### Patch Changes

@@ -5,6 +5,13 @@
 
 PayPal for Expo on the native PayPal SDK 3 (iOS and Android). Every flow is one promise that resolves `approved` or `canceled`, and PayPal's own buttons are native views.
 
+<p>
+  <img src="https://raw.githubusercontent.com/hzblj/expo-paypal/main/media/ios/checkout-light.png" alt="Checkout with PayPal, Pay Later and PayPal Credit buttons on iOS" width="200">
+  <img src="https://raw.githubusercontent.com/hzblj/expo-paypal/main/media/ios/card-dark.png" alt="A card payment form with 3D Secure on iOS" width="200">
+  <img src="https://raw.githubusercontent.com/hzblj/expo-paypal/main/media/android/checkout-light.png" alt="Checkout on Android" width="200">
+  <img src="https://raw.githubusercontent.com/hzblj/expo-paypal/main/media/android/buttons-dark.png" alt="PayPal's payment buttons on Android" width="200">
+</p>
+
 - PayPal Checkout with App Switch: the buyer approves in the PayPal app with Face ID or a passkey, or in an in-app browser when that isn't possible
 - Pay Later and PayPal Credit, through the same checkout
 - Vaulting: save a PayPal account or a card without a purchase, or along with one
